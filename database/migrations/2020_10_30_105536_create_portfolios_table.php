@@ -16,7 +16,7 @@ class CreatePortfoliosTable extends Migration
         Schema::create('portfolios', function (Blueprint $table) {
             $table->id();
             $table->json('slug');
-            $table->unsignedBigInteger('php')
+            $table->unsignedBigInteger('filter_id')
                 ->nullable();
             $table->unsignedBigInteger('mockup_id')
                 ->nullable();

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * App\Models\Portfolio
@@ -47,25 +48,40 @@ use Illuminate\Database\Eloquent\Model;
 class Portfolio extends Model
 {
     use HasFactory;
+    use HasTranslations;
 
     protected $fillable = [
-        'slug',
-        'filter_id',
-        'mockup_id',
-        'image_id',
-        'gallery',
-        'seo_title',
-        'seo_description',
-        'seo_keywords',
-        'title',
-        'description',
-        'external_link',
+            'slug',
+            'filter_id',
+            'mockup_id',
+            'image_id',
+            'gallery',
+            'seo_title',
+            'seo_description',
+            'seo_keywords',
+            'title',
+            'description',
+            'external_link',
     ];
+
+    public $translatable = [
+            'slug',
+            'seo_title',
+            'seo_description',
+            'seo_keywords',
+            'title',
+            'description'
+    ];
+
 
     public function image()
     {
         return $this->belongsTo(Image::class);
     }
 
+    public function filter()
+    {
+        return $this->hasOne(Filter::class);
+    }
 
 }
