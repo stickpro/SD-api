@@ -78,6 +78,10 @@ class Portfolio extends Model
     {
         return $this->belongsTo(Image::class);
     }
+    public function mockup()
+    {
+        return $this->belongsTo(Image::class);
+    }
 
     public function filter()
     {

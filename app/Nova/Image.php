@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Image as NovaImage;
+use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
 use Spatie\NovaTranslatable\Translatable;
 
 class Image extends Resource
@@ -45,11 +46,9 @@ class Image extends Resource
     {
         return [
                 ID::make(__('ID'), 'id')->sortable(),
-                NovaImage::make('slug')->disk('public'),
-                Translatable::make([
-                        Text::make('title'),
-                        Text::make('alt')
-                ])
+                CloudinaryImage::make('slug'),
+                Text::make('title'),
+                Text::make('alt')
         ];
     }
 

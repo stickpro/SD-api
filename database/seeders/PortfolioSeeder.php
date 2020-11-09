@@ -20,7 +20,7 @@ class PortfolioSeeder extends Seeder
             'filter_id' => Filter::first()->id,
             'title' => [ 'ru' => 'Заголовок', 'en' => 'title' ],
             'description' => ['ru' => 'Описание', 'en' => 'description'],
-            'external_link' => 'dahttps://synchro.ru/'
+            'external_link' => 'https://synchro.ru/'
         ]);
     }
 }

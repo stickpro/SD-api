@@ -5,6 +5,7 @@ namespace App\Nova;
 use Froala\NovaFroalaField\Froala;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
@@ -53,9 +54,8 @@ class Portfolio extends Resource
                         Froala::make('Description'),
                 ]),
                 Text::make('External Link'),
-                BelongsTo::make('image')
-                        ->inline()
-                        ->requireChild(),
+                HasOne::make('Image'),
+                HasOne::make('Mockup', 'mockup', Image::class),
                 BelongsTo::make('Filter')
         ];
     }
