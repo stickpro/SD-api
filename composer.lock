@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "456f1e14edd705f634f0513ad55de4da",
+    "content-hash": "5f8bc4bdb1cdc4f44f251812ef61e484",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1576,6 +1576,54 @@
                 "searchable"
             ],
             "time": "2019-09-05T08:09:24+00:00"
+        },
+        {
+            "name": "kirschbaum-development/nova-inline-relationship",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kirschbaum-development/nova-inline-relationship.git",
+                "reference": "e1d05de11ae1271e99ba20597fb6988a0f402e3e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kirschbaum-development/nova-inline-relationship/zipball/e1d05de11ae1271e99ba20597fb6988a0f402e3e",
+                "reference": "e1d05de11ae1271e99ba20597fb6988a0f402e3e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "codedungeon/phpunit-result-printer": "^0.26.2",
+                "laravel/nova": "*",
+                "mockery/mockery": "^1.1",
+                "orchestra/testing": "^4.0",
+                "phpunit/phpunit": "^8.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "KirschbaumDevelopment\\NovaInlineRelationship\\NovaInlineRelationshipServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "KirschbaumDevelopment\\NovaInlineRelationship\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field for displaying relationship properties inline.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2020-03-05T22:07:37+00:00"
         },
         {
             "name": "laravel/framework",

@@ -4,25 +4,27 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Image as NovaImage;
 use Spatie\NovaTranslatable\Translatable;
 
-class Filter extends Resource
+class Image extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\Filter::class;
+    public static $model = \App\Models\Image::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -43,8 +45,10 @@ class Filter extends Resource
     {
         return [
                 ID::make(__('ID'), 'id')->sortable(),
+                NovaImage::make('slug')->disk('public'),
                 Translatable::make([
-                        Text::make('name'),
+                        Text::make('title'),
+                        Text::make('alt')
                 ])
         ];
     }

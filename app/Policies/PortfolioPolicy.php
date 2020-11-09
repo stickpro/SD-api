@@ -41,7 +41,7 @@ class PortfolioPolicy
      */
     public function create(User $user)
     {
-        return $user->can('create-portfolio');
+        return $user->can('create-update-portfolio');
     }
 
     /**
@@ -53,7 +53,7 @@ class PortfolioPolicy
      */
     public function update(User $user, Portfolio $portfolio)
     {
-        //
+        return $user->can('create-update-portfolio');
     }
 
     /**

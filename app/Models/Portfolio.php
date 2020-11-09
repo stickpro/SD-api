@@ -81,7 +81,7 @@ class Portfolio extends Model
 
     public function filter()
     {
-        return $this->hasOne(Filter::class);
+        return $this->belongsTo(Filter::class);
     }
 
 }

@@ -4,12 +4,10 @@ namespace App\Nova;
 
 use Froala\NovaFroalaField\Froala;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Trix;
-use Laravel\Nova\Http\Requests\NovaRequest;
 use Spatie\NovaTranslatable\Translatable;
 
 class Portfolio extends Resource
@@ -48,17 +46,17 @@ class Portfolio extends Resource
         return [
                 ID::make(__('ID'), 'id')->sortable(),
                 Translatable::make([
-                                Text::make('Title'),
-                                Slug::make('slug'),
-                                Text::make('Seo Title'),
-                                Text::make('Seo Description'),
-                                Froala::make('Description'),
-                                Froala::make('Text'),
-                        ]
-                ),
+                        Text::make('Title'),
+                        Slug::make('slug'),
+                        Text::make('Seo Title'),
+                        Text::make('Seo Description'),
+                        Froala::make('Description'),
+                ]),
                 Text::make('External Link'),
-                HasOne::make('Filter')
-
+                BelongsTo::make('image')
+                        ->inline()
+                        ->requireChild(),
+                BelongsTo::make('Filter')
         ];
     }
 
