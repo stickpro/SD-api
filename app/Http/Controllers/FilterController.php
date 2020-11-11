@@ -2,19 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Filter\FilterResource;
 use App\Models\Filter;
 use Illuminate\Http\Request;
 
 class FilterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')
+                ->except('index', 'show');
+        $this->authorizeResource(Filter::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $filters = Filter::paginate($request->input('count', 15));
+
+        return FilterResource::collection($filters);
     }
 
     /**

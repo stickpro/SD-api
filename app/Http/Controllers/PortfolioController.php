@@ -12,7 +12,7 @@ class PortfolioController extends Controller
     public function __construct()
     {
         $this->middleware('auth:sanctum')
-                ->except('index', 'show', 'store');
+                ->except('index', 'show');
         $this->authorizeResource(Portfolio::class);
     }
     /**
@@ -22,6 +22,7 @@ class PortfolioController extends Controller
      */
     public function index()
     {
+
         return Portfolio::first();
     }
 
