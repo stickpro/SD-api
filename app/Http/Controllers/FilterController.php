@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Filter\StoreFilterRequest;
 use App\Http\Resources\Filter\FilterResource;
 use App\Models\Filter;
 use Illuminate\Http\Request;
@@ -32,11 +33,13 @@ class FilterController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return FilterResource
      */
-    public function store(Request $request)
+    public function store(StoreFilterRequest $request)
     {
-        //
+        $filter = Filter::create($request->validated());
+
+        return FilterResource::make($filter);
     }
 
     /**

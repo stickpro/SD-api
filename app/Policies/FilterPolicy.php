@@ -41,7 +41,8 @@ class FilterPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return $user->can('create-filter');
+;
     }
 
     /**
