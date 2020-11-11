@@ -44,6 +44,9 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Illuminate\Database\Eloquent\Builder|Portfolio whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Portfolio whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Filter|null $filter
+ * @property-read array $translations
+ * @property-read \App\Models\Image|null $mockup
  */
 class Portfolio extends Model
 {

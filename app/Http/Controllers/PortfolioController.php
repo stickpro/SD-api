@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Portfolio\StorePortfolioRequest;
+use App\Http\Resources\Portfolio\PortfolioResource;
 use App\Models\Portfolio;
 use Illuminate\Http\Request;
 
 class PortfolioController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')
+                ->except('index', 'show', 'store');
+        $this->authorizeResource(Portfolio::class);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,18 +22,19 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        //
+        return Portfolio::first();
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  StorePortfolioRequest  $request
+     * @return PortfolioResource
      */
-    public function store(Request $request)
+    public function store(StorePortfolioRequest $request)
     {
-        //
+        $portfolio = Portfolio::create($request->validate());
+        return PortfolioResource::make($portfolio);
     }
 
     /**

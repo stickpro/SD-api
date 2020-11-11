@@ -21,6 +21,7 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Illuminate\Database\Eloquent\Builder|Filter whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Filter whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read array $translations
  */
 class Filter extends Model
 {

@@ -39,7 +39,7 @@ class PortfolioPolicy
      * @param \App\Models\User $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(?User $user)
     {
         return $user->can('create-update-portfolio');
     }

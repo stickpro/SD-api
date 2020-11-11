@@ -14613,7 +14613,7 @@
         public static function validateWithBag($errorBag, $rules, ...$params)
         {
                         return \Illuminate\Http\Request::validateWithBag($errorBag, $rules, ...$params);
-        }
+        }Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
                     /**
          * 
          *
