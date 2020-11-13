@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Filter;
 use App\Models\Portfolio;
+use App\Policies\FilterPolicy;
 use App\Policies\PortfolioPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -15,7 +17,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-            Portfolio::class => PortfolioPolicy::class
+            Portfolio::class => PortfolioPolicy::class,
+            Filter::class    => FilterPolicy::class,
     ];
 
     /**
@@ -26,7 +29,6 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
         //
     }
 }

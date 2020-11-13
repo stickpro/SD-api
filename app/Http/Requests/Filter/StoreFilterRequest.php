@@ -24,7 +24,7 @@ class StoreFilterRequest extends FormRequest
     public function rules()
     {
         return [
-                'name' => 'required',
+                'name' => 'required_with_all:ru,en|min:1',
         ];
     }
 }

@@ -10,6 +10,7 @@ class FilterPolicy
 {
     use HandlesAuthorization;
 
+
     /**
      * Determine whether the user can view any models.
      *
@@ -54,7 +55,7 @@ class FilterPolicy
      */
     public function update(User $user, Filter $filter)
     {
-        //
+        return $user->can('update-filter');
     }
 
     /**
@@ -66,7 +67,7 @@ class FilterPolicy
      */
     public function delete(User $user, Filter $filter)
     {
-        //
+        return $user->can('delete-filter');
     }
 
     /**
@@ -92,4 +93,5 @@ class FilterPolicy
     {
         //
     }
+
 }

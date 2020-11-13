@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Filter\StoreFilterRequest;
+use App\Http\Requests\Filter\UpdateFilterRequest;
+use App\Http\Resources\Filter\FilterEditResource;
 use App\Http\Resources\Filter\FilterResource;
 use App\Models\Filter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class FilterController extends Controller
 {
@@ -46,11 +49,11 @@ class FilterController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Filter  $filter
-     * @return \Illuminate\Http\Response
+     * @return FilterResource
      */
     public function show(Filter $filter)
     {
-        //
+        return FilterResource::make($filter);
     }
 
     /**
@@ -58,21 +61,35 @@ class FilterController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Filter  $filter
-     * @return \Illuminate\Http\Response
+     * @return FilterEditResource
      */
-    public function update(Request $request, Filter $filter)
+    public function update(UpdateFilterRequest $request, Filter $filter)
     {
-        //
+        $filter->update($request->validated());
+
+        return FilterEditResource::make($filter);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Filter  $filter
-     * @return \Illuminate\Http\Response
+     * @return FilterResource
+     * @throws \Exception
      */
     public function destroy(Filter $filter)
     {
-        //
+        $filter->delete();
+
+        return FilterResource::make($filter);
+    }
+
+    /**
+     * @param  \App\Models\Filter  $filter
+     * @return FilterEditResource
+     */
+    public function edit(Filter $filter)
+    {
+        return FilterEditResource::make($filter);
     }
 }
