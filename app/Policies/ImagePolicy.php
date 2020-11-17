@@ -41,7 +41,7 @@ class ImagePolicy
      */
     public function create(User $user)
     {
-        return true;
+        return $user->can('create-image');
     }
 
     /**
@@ -53,7 +53,7 @@ class ImagePolicy
      */
     public function update(User $user, Image $image)
     {
-        //
+        return $user->can('update-image');
     }
 
     /**

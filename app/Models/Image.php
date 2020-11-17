@@ -30,9 +30,9 @@ use Spatie\Translatable\HasTranslations;
 class Image extends Model
 {
     use HasFactory;
-    use HasTranslations;
 
-    public $translatable = [
+    protected $fillable = [
+            'slug',
             'title',
             'alt'
     ];

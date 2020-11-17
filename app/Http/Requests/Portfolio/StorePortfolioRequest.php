@@ -24,7 +24,14 @@ class StorePortfolioRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+                'title'           => 'required|max:255',
+                'slug'            => 'required|max:255',
+                'seo_title'       => 'required|max:255',
+                'seo_description' => 'required',
+                'seo_keywords'    => 'required',
+                'description'     => 'required',
+                'filter_id'       => 'required|integer',
+                'external_link'   => 'required|string',
         ];
     }
 }

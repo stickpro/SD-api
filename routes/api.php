@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\FilterController;
+use App\Http\Controllers\ImageController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,3 +24,5 @@ Route::apiResource('portfolios', PortfolioController::class);
 
 Route::apiResource('filters', FilterController::class);
 Route::get('filters/{filter}/edit', [FilterController::class, 'edit']);
+
+Route::apiResource('images',ImageController::class);

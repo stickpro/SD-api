@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Portfolio\StorePortfolioRequest;
 use App\Http\Resources\Portfolio\PortfolioResource;
+use App\Http\Resources\Portfolio\PortfoliosResource;
 use App\Models\Portfolio;
+use Database\Factories\PortfolioFactory;
 use Illuminate\Http\Request;
 
 class PortfolioController extends Controller
@@ -18,12 +20,14 @@ class PortfolioController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index()
+    public function index(Request $request)
     {
 
-        return Portfolio::first();
+        $filters = Portfolio::paginate($request->input('count', 15));
+
+        return PortfoliosResource::collection($filters);
     }
 
     /**
@@ -34,7 +38,7 @@ class PortfolioController extends Controller
      */
     public function store(StorePortfolioRequest $request)
     {
-        $portfolio = Portfolio::create($request->validate());
+        $portfolio = Portfolio::create($request->validated());
         return PortfolioResource::make($portfolio);
     }
 
