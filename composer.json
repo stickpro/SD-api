@@ -25,7 +25,8 @@
         "spatie/laravel-permission": "^3.17",
         "spatie/laravel-translatable": "^4.5",
         "spatie/nova-translatable": "^3.0",
-        "vyuldashev/nova-permission": "^2.9"
+        "vyuldashev/nova-permission": "^2.9",
+        "yoelpc4/laravel-cloudinary": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.8",

@@ -24,7 +24,7 @@ class StoreImageRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'slug' => 'min:1'
         ];
     }
 }

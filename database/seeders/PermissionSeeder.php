@@ -19,6 +19,7 @@ class PermissionSeeder extends Seeder
                 'user',
                 'portfolios',
                 'filter',
+                'image'
         ];
 
         foreach ($models as $model) {

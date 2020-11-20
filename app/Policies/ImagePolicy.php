@@ -16,7 +16,7 @@ class ImagePolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(?User $user)
     {
         return true;
     }
@@ -28,7 +28,7 @@ class ImagePolicy
      * @param  \App\Models\Image  $image
      * @return mixed
      */
-    public function view(User $user, Image $image)
+    public function view(?User $user, Image $image)
     {
         return true;
     }

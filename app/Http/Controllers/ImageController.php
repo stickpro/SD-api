@@ -8,12 +8,14 @@ use App\Http\Resources\Image\ImageResource;
 use App\Http\Resources\Image\ImagesResource;
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:sanctum');
+        $this->middleware('auth:sanctum')
+                ->except('index', 'show');;
         $this->authorizeResource(Image::class);
     }
     /**
@@ -31,14 +33,20 @@ class ImageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @param  StoreImageRequest  $request
+     * @param  Image  $image
+     * @return ImageResource
      */
     public function store(StoreImageRequest $request)
     {
-        $image = Image::create($request->validate());
+        $image = new Image();
+        $image->slug = $request->file('image')
+                ->store('uploads', 'cloudinary');
+        $image->title = $request->input('title');
+        $image->alt = $request->input('alt');
+        $image->save();
 
-        return ImageResource::collection($image);
+        return ImageResource::make($image);
     }
 
     /**
