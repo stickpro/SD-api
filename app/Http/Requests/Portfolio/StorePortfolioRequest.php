@@ -32,6 +32,10 @@ class StorePortfolioRequest extends FormRequest
                 'description'     => 'required',
                 'filter_id'       => 'required|integer',
                 'external_link'   => 'required|string',
+                'image_id'        => 'required',
+                'mockup_id'       => 'required',
+                'gallery'         => 'required',
+                ''
         ];
     }
 }
