@@ -48,6 +48,11 @@ use Spatie\Translatable\HasTranslations;
  * @property-read \App\Models\Filter|null $filter
  * @property-read array $translations
  * @property-read \App\Models\Image|null $mockup
+ * @method static \Illuminate\Database\Query\Builder|Portfolio onlyTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Portfolio withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Portfolio withoutTrashed()
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Image[] $images
+ * @property-read int|null $images_count
  */
 class Portfolio extends Model
 {
@@ -83,6 +88,12 @@ class Portfolio extends Model
     {
         return $this->belongsTo(Image::class);
     }
+
+    public function images()
+    {
+        return $this->belongsToMany(Image::class);
+    }
+
     public function mockup()
     {
         return $this->belongsTo(Image::class);

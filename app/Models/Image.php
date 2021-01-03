@@ -26,6 +26,9 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Illuminate\Database\Eloquent\Builder|Image whereUpdatedAt($value)
  * @mixin \Eloquent
  * @property-read array $translations
+ * @property-read \App\Models\Portfolio $portfolio
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Portfolio[] $portfolios
+ * @property-read int|null $portfolios_count
  */
 class Image extends Model
 {
@@ -36,4 +39,14 @@ class Image extends Model
             'title',
             'alt'
     ];
+
+    public function portfolio()
+    {
+        return $this->belongsTo(Portfolio::class);
+    }
+
+    public function portfolios()
+    {
+        return $this->belongsToMany(Portfolio::class);
+    }
 }

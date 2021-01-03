@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        \Spatie\NovaTranslatable\Translatable::defaultLocales(['ru', 'en']);
+//        \Spatie\NovaTranslatable\Translatable::defaultLocales(['ru', 'en']);
 
     }
 
