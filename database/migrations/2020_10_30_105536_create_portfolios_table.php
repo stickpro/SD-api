@@ -22,8 +22,6 @@ class CreatePortfoliosTable extends Migration
                 ->nullable();
             $table->unsignedBigInteger('image_id')
                 ->nullable();
-            $table->json('gallery')
-                ->nullable();
             $table->json('seo_title')
                 ->nullable();
             $table->json('seo_description')

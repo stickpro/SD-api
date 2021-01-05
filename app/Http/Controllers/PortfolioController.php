@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Portfolio\StorePortfolioRequest;
+use App\Http\Resources\Portfolio\PortfolioEditResource;
 use App\Http\Resources\Portfolio\PortfolioResource;
 use App\Http\Resources\Portfolio\PortfoliosResource;
 use App\Models\Portfolio;
@@ -17,6 +18,7 @@ class PortfolioController extends Controller
                 ->except('index', 'show');
         $this->authorizeResource(Portfolio::class);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,8 +26,8 @@ class PortfolioController extends Controller
      */
     public function index(Request $request)
     {
-
-        $filters = Portfolio::paginate($request->input('count', 15));
+        $filters = Portfolio::with('mockup')
+                ->paginate($request->input('count', 15));
 
         return PortfoliosResource::collection($filters);
     }
@@ -74,5 +76,14 @@ class PortfolioController extends Controller
     public function destroy(Portfolio $portfolio)
     {
         //
+    }
+
+    /**
+     * @param  Portfolio  $portfolio
+     * @return PortfolioEditResource
+     */
+    public function edit(Portfolio $portfolio)
+    {
+        return PortfolioEditResource::make($portfolio->load(['mockup', 'image', 'filter']));
     }
 }

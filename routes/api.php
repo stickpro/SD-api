@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('portfolios', PortfolioController::class);
+Route::get('portfolios/{portfolio}/edit', [PortfolioController::class, 'edit']);
 
 Route::apiResource('filters', FilterController::class);
 Route::get('filters/{filter}/edit', [FilterController::class, 'edit']);

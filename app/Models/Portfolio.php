@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Translatable\HasTranslations;
-
+use App\Traits\HasTranslations;
 /**
  * App\Models\Portfolio
  *
@@ -65,7 +64,6 @@ class Portfolio extends Model
             'filter_id',
             'mockup_id',
             'image_id',
-            'gallery',
             'seo_title',
             'seo_description',
             'seo_keywords',
@@ -82,7 +80,6 @@ class Portfolio extends Model
             'title',
             'description'
     ];
-
 
     public function image()
     {

@@ -34,8 +34,6 @@ class StorePortfolioRequest extends FormRequest
                 'external_link'   => 'required|string',
                 'image_id'        => 'required',
                 'mockup_id'       => 'required',
-                'gallery'         => 'required',
-                ''
         ];
     }
 }
