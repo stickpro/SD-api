@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\HasTranslations;
+use Jedrzej\Searchable\SearchableTrait;
+
 /**
  * App\Models\Portfolio
  *
@@ -58,6 +60,8 @@ class Portfolio extends Model
     use HasFactory;
     use HasTranslations;
     use SoftDeletes;
+    use SearchableTrait;
+
 
     protected $fillable = [
             'slug',
@@ -70,6 +74,7 @@ class Portfolio extends Model
             'title',
             'description',
             'external_link',
+            'show_home'
     ];
 
     public $translatable = [
@@ -80,6 +85,16 @@ class Portfolio extends Model
             'title',
             'description'
     ];
+
+    public $searchable = ['show_home', 'slug'];
+
+    public function resolveRouteBinding($value, $field = null)
+    {
+        return $this->where('id', $value)
+                ->orWhere('slug->en', $value)
+                ->orWhere('slug->ru', $value)
+                ->firstOrFail();
+    }
 
     public function image()
     {

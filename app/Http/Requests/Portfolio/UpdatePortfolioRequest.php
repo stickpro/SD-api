@@ -13,7 +13,7 @@ class UpdatePortfolioRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class UpdatePortfolioRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+                'title'           => 'required_with_all:ru,en|max:255',
+                'slug'            => 'required_with_all:ru,en|max:255',
+                'seo_title'       => 'required_with_all:ru,en|max:255',
+                'seo_description' => 'required_with_all:ru,en',
+                'seo_keywords'    => 'required_with_all:ru,en',
+                'description'     => 'required_with_all:ru,en',
+                'filter_id'       => 'required|integer',
+                'external_link'   => 'required|string',
+                'image_id'        => 'required',
+                'mockup_id'       => 'required',
         ];
     }
 }

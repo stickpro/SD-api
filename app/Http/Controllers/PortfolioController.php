@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Portfolio\StorePortfolioRequest;
+use App\Http\Requests\Portfolio\UpdatePortfolioRequest;
 use App\Http\Resources\Portfolio\PortfolioEditResource;
 use App\Http\Resources\Portfolio\PortfolioResource;
 use App\Http\Resources\Portfolio\PortfoliosResource;
@@ -26,10 +27,11 @@ class PortfolioController extends Controller
      */
     public function index(Request $request)
     {
-        $filters = Portfolio::with('mockup')
+        $portfolios = Portfolio::filtered()
+                ->with('mockup', 'image', 'filter')
                 ->paginate($request->input('count', 15));
 
-        return PortfoliosResource::collection($filters);
+        return PortfoliosResource::collection($portfolios);
     }
 
     /**
@@ -48,23 +50,27 @@ class PortfolioController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Portfolio  $portfolio
-     * @return \Illuminate\Http\Response
+     * @return PortfolioResource
      */
     public function show(Portfolio $portfolio)
     {
-        //
+        $portfolio = $portfolio->load('mockup', 'image', 'filter');
+
+        return PortfolioResource::make($portfolio);
     }
+
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Portfolio  $portfolio
-     * @return \Illuminate\Http\Response
+     * @param  UpdatePortfolioRequest  $request
+     * @param  Portfolio  $portfolio
+     * @return PortfolioResource
      */
-    public function update(Request $request, Portfolio $portfolio)
+    public function update(UpdatePortfolioRequest $request, Portfolio $portfolio)
     {
-        //
+        $portfolio->update($request->validated());
+
+        return PortfolioResource::make($portfolio);
     }
 
     /**
@@ -84,6 +90,6 @@ class PortfolioController extends Controller
      */
     public function edit(Portfolio $portfolio)
     {
-        return PortfolioEditResource::make($portfolio->load(['mockup', 'image', 'filter']));
+        return PortfolioEditResource::make($portfolio->load(['mockup', 'image', 'filter', 'images']));
     }
 }

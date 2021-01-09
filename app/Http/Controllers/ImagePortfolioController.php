@@ -13,6 +13,8 @@ class ImagePortfolioController extends Controller
     public function __construct()
     {
         $this->middleware('auth:sanctum');
+
+        $this->authorizeResource(Portfolio::class);
     }
 
     public function store(Image $image, Portfolio $portfolio)

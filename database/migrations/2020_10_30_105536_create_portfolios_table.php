@@ -31,6 +31,7 @@ class CreatePortfoliosTable extends Migration
             $table->json('title');
             $table->json('description');
             $table->string('external_link');
+            $table->boolean('show_home');
             $table->softDeletes();
             $table->timestamps();
         });

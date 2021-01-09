@@ -30,6 +30,8 @@ class PortfolioEditResource extends JsonResource
                 'mockup'          => $this->mockup,
                 'image'           => $this->image,
                 'filter'          => $this->filter,
+                'images'          => $this->images,
+                'show_home'       => $this->show_home,
 
         ];
     }
