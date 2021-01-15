@@ -20,9 +20,9 @@ class PortfolioController extends Controller
         $this->authorizeResource(Portfolio::class);
     }
 
+
     /**
-     * Display a listing of the resource.
-     *
+     * @param  Request  $request
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index(Request $request)
@@ -54,7 +54,7 @@ class PortfolioController extends Controller
      */
     public function show(Portfolio $portfolio)
     {
-        $portfolio = $portfolio->load('mockup', 'image', 'filter');
+        $portfolio = $portfolio->load('mockup', 'image', 'filter', 'images');
 
         return PortfolioResource::make($portfolio);
     }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ImagePortfolioController;
+use App\Http\Controllers\TelegramController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PortfolioController;
@@ -33,3 +34,7 @@ Route::post('images/{image}/portfolios/{portfolio}', [ImagePortfolioController::
     ->name('images.portfolios.store');
 Route::delete('images/{image}/portfolios/{portfolio}', [ImagePortfolioController::class, 'delete'])
     ->name('images.portfolios.delete');
+
+
+Route::post('telegrams/send', [TelegramController::class, 'send'])
+        ->name('telegram.send');
