@@ -54,6 +54,9 @@ use Jedrzej\Searchable\SearchableTrait;
  * @method static \Illuminate\Database\Query\Builder|Portfolio withoutTrashed()
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Image[] $images
  * @property-read int|null $images_count
+ * @property int $show_home
+ * @method static \Illuminate\Database\Eloquent\Builder|Portfolio filtered(array $query = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Portfolio whereShowHome($value)
  */
 class Portfolio extends Model
 {
@@ -87,6 +90,12 @@ class Portfolio extends Model
     ];
 
     public $searchable = ['show_home', 'slug'];
+
+    public function getSearchableAttributes()
+    {
+        return ['show_home', 'slug'];
+    }
+
 
     public function resolveRouteBinding($value, $field = null)
     {
