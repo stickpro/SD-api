@@ -26,7 +26,7 @@ class SendTelegramRequest extends FormRequest
         return [
                 'name' => 'required|string|min:1|max:255',
                 'email' => 'required|email',
-                'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:10',
+                'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
                 'message' => 'required|string|min:1|max:255',
         ];
     }
